@@ -1,4 +1,4 @@
-package main.java.net.therap.annotated_validator;
+package main.java.net.therap.annotated_validator.util;
 
 /**
  * @author rayed
