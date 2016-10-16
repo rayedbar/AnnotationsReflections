@@ -1,4 +1,4 @@
-package main.java.net.therap.annotated_validator.annotations;
+package net.therap.annotated_validator.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,7 +9,10 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Size {
+
     public int min() default 1;
+
     public int max() default 10;
+
     public String message() default "Length must be {min}-{max}";
 }

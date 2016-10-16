@@ -1,0 +1,5 @@
+apply plugin: 'java'
+
+apply plugin: 'application'
+
+mainClassName = "net.therap.annotated_validator.app.Main"

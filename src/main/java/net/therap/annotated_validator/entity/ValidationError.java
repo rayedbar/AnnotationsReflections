@@ -1,4 +1,4 @@
-package main.java.net.therap.annotated_validator.service;
+package net.therap.annotated_validator.entity;
 
 /**
  * @author rayed
@@ -8,14 +8,14 @@ package main.java.net.therap.annotated_validator.service;
 public class ValidationError {
 
     private String fieldName;
-    private String fieldType;
+    private Class fieldType;
     private String message;
 
     public ValidationError(){
 
     }
 
-    public ValidationError(String fieldType, String fieldName, String message) {
+    public ValidationError(Class fieldType, String fieldName, String message) {
         this.fieldType = fieldType;
         this.fieldName = fieldName;
         this.message = message;
@@ -29,11 +29,9 @@ public class ValidationError {
         this.message = message;
     }
 
-    public String getFieldType() {
-        return fieldType;
-    }
+    public String getFieldType() { return fieldType.getSimpleName(); }
 
-    public void setFieldType(String fieldType) {
+    public void setFieldType(Class fieldType) {
         this.fieldType = fieldType;
     }
 

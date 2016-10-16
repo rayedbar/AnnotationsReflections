@@ -1,9 +1,9 @@
-package main.java.net.therap.annotated_validator.service;
+package net.therap.annotated_validator.service;
 
-import main.java.net.therap.annotated_validator.Entity.Person;
-import main.java.net.therap.annotated_validator.annotations.Size;
+import net.therap.annotated_validator.entity.Person;
+import net.therap.annotated_validator.entity.ValidationError;
+import net.therap.annotated_validator.util.Utils;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,42 +25,23 @@ public class AnnotatedValidator {
 
             field.setAccessible(true);
 
-            ValidationError error = new ValidationError();
+            String fieldName = field.getName();
+            Class fieldType = field.getType();
+            String message;
 
-            String variableType = field.getType().getSimpleName();
-            String variableName = field.getName();
-
-            error.setFieldType(variableType);
-            error.setFieldName(variableName);
-
-            Annotation[] annotations = field.getDeclaredAnnotations();
-
-            for (Annotation annotation : annotations){
-                if (annotation instanceof Size) {
-                    Size size = (Size) annotation;
-                    try {
-                        String variableValue = String.valueOf(field.get(person));
-                        if (variableType.equals("String")){
-                            if (variableValue.length() > 10){
-                                error.setMessage(size.message());
-                            } else {
-                                error.setMessage(variableValue);
-                            }
-                        } else {
-                            int i = Integer.parseInt(variableValue);
-                            if (i < 18){
-                                error.setMessage(size.message());
-                            } else {
-                                error.setFieldName(variableValue);
-                            }
-                        }
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }
+            if (fieldName.equals("name")){
+                message = Utils.processStringField(person, field);
+            } else {
+                message = Utils.processIntField(person, field);
             }
+
+            ValidationError error = new ValidationError();
+            error.setFieldName(fieldName);
+            error.setFieldType(fieldType);
+            error.setMessage(message);
+
             validationErrors.add(error);
-        }
+           }
         return validationErrors;
     }
 

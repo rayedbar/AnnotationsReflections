@@ -1,8 +1,8 @@
-package main.java.net.therap.annotated_validator.app;
+package net.therap.annotated_validator.app;
 
-import main.java.net.therap.annotated_validator.Entity.Person;
-import main.java.net.therap.annotated_validator.service.AnnotatedValidator;
-import main.java.net.therap.annotated_validator.service.ValidationError;
+import net.therap.annotated_validator.entity.Person;
+import net.therap.annotated_validator.service.AnnotatedValidator;
+import net.therap.annotated_validator.entity.ValidationError;
 
 import java.util.List;
 
@@ -10,9 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         Person p = new Person("Abcde Fghijk", 5);
-        List<ValidationError> errors = null;
-        errors = AnnotatedValidator.validate(p);
+        List<ValidationError> errors = AnnotatedValidator.validate(p);
         AnnotatedValidator.print(errors);
-
     }
 }

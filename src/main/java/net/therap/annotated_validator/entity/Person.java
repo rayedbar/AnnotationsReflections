@@ -1,6 +1,6 @@
-package main.java.net.therap.annotated_validator.Entity;
+package net.therap.annotated_validator.entity;
 
-import main.java.net.therap.annotated_validator.annotations.Size;
+import net.therap.annotated_validator.annotations.Size;
 
 /**
  * @author rayed
@@ -12,7 +12,7 @@ public class Person {
     @Size(max = 10)
     private String name;
 
-    @Size(min = 18, message = "Age can not be less than {min}")
+    @Size(min = 18, message = "Age cannot be less than {min}")
     private int age;
 
     public Person(String name, int age) {
